@@ -18,10 +18,7 @@
 		<!--IE使用EDGE内核-->
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 		<title>心娱直播</title>
-		<script src="../share_live_aliplayer/js/flexible.js"></script>
-		<script>
-			var sourcesPath = "../share_live_aliplayer/";
-		</script>
+		<script src="../share_live/js/flexible.js"></script>
 		<style>
 			[v-cloak] {
 				display: none;
@@ -243,7 +240,7 @@
 	<body>
 		<div id="app">
 			<div class="header">
-				<img class="xinyu_logo" src="../share_live_aliplayer/img/icon_download_logo@2x.png">
+				<img class="xinyu_logo" src="../share_live/img/icon_download_logo@2x.png">
 				<div class="title_desc">
 					<p v-cloak>{{language.comm.openTitle}}</p>
 					<p v-cloak>{{language.comm.openDesc}}</p>
@@ -254,7 +251,7 @@
 					</span>
 				</div>
 			</div>
-			<img class="xinyu_bg" src="../share_live_aliplayer/img/bg_download@2x.png">
+			<img class="xinyu_bg" src="../share_live/img/bg_download@2x.png">
 
 			<!-- 遮罩层(微信提示用户浏览器打开) -->
 			<div class="fixed_mask" v-if="showMask" v-cloak >
@@ -262,20 +259,19 @@
 					<div class="guide_content">
 						<div>点击右上角</div>
 						<div class="guide_icon">
-							选择"浏览器<img src="../share_live_aliplayer/img/safari@2x.png">/<img src="../share_live_aliplayer/img/browser@2x.png">打开"
+							选择"浏览器<img src="../share_live/img/safari@2x.png">/<img src="../share_live/img/browser@2x.png">打开"
 						</div>
 					</div>
-					<img class="guide_line" src="../share_live_aliplayer/img/guide_line@2x.png">
+					<img class="guide_line" src="../share_live/img/guide_line@2x.png">
 				</div>
 			</div>
 			
 			<!-- 下载按钮 -->
-			<img class="down_btn" src="../share_live_aliplayer/img/icon_download_default@2x.png" @click="toApp" >
+			<img class="down_btn" src="../share_live/img/icon_download_default@2x.png" @click="toApp" >
 		</div>
 
-		<script src="../share_live_aliplayer/js/jquery.min.js"></script>
-		<script src="../share_live_aliplayer/js/common.js"></script>
-		<script src="../share_live_aliplayer/js/vue.min.js"></script>
+		<script src="../share_live/js/jquery.min.js"></script>
+		<script src="../share_live/js/vue.min.js"></script>
 		<script>
 			var timer = null;
 			var app = new Vue({
@@ -283,7 +279,6 @@
 				data: function() {
 					return {
 						language: {}, // 语言
-						languageType: '',
 						pageType: "", // 将要跳转的页面类型, drama  movie  variety live
 						pageDataId: "", // 将要跳转的页面的具体ID, dramaID  movieID  varietyID liveID
 						showMask: false, // 是否显示遮罩层
@@ -293,23 +288,15 @@
 					var _this = this;
 
 					// 获取多语言数据
-					this.languageType = comm.getUrlData("lang");
-					comm.languageType = this.languageType;
-					comm.getLanguageData((data, str) => {
+					this.getLanguageData((data, str) => {
+						console.log("语言数据:", data);
+						console.log("语言:", str);
 						_this.language = data;
 					});
-					console.log("语言数据:", this.language);
-					console.log("语言:", this.languageType);
-					
-					// this.getLanguageData((data, str) => {
-					// 	console.log("语言数据:", data);
-					// 	console.log("语言:", str);
-					// 	_this.language = data;
-					// });
 
 					// 获取URL地址参数
-					this.pageType = comm.getUrlData("type");
-					this.pageDataId = comm.getUrlData("dataId");
+					this.pageType = this.GetUrlData("type");
+					this.pageDataId = this.GetUrlData("dataId");
 					console.log("页面类型:", this.pageType);
 					console.log("页面ID:", this.pageDataId);
 				},
@@ -327,6 +314,51 @@
 					}
 				},
 				methods: {
+					// 获取url参数值
+					GetUrlData: function(paras) {
+						var url = location.href;
+						if (url.charAt(url.indexOf("?") + 1) == "&") {
+							paraString = url.substring(url.indexOf("?") + 2, url.length).split("&");
+						} else {
+							paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+						}
+						var paraObj = {};
+
+						for (i = 0; j = paraString[i]; i++) {
+							paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length)
+						}
+						var returnValue = paraObj[paras.toLowerCase()];
+						if (typeof(returnValue) == "undefined") {
+							return ""
+						} else {
+							return returnValue
+						}
+					},
+					// 获取语言文件
+					getLanguageData: function(fun) {
+						var search = location.search.replace(/^\?/, '').split('&');
+
+						function get_url_data(key) {
+							var val = '';
+							search.map(function(k_v) {
+								k_v = k_v.split('=');
+								if (k_v[0] == key) {
+									val = k_v[1];
+								}
+							});
+							return val;
+						}
+						var lang = get_url_data('lang') || this.GetUrlData("lang");
+						// var lang = this.GetUrlData("lang");
+						var str = !lang || lang == "zh_CN" ? "zh_CN" : lang;
+						$.ajax({
+							url: "../share_live/lang/" + str + ".json",
+							async: false,
+							success: function(data) {
+								fun(data, str);
+							}
+						});
+					},
 					// 跳转App
 					// 安卓：http://d.7short.com/2s1z
 					// iOS： http://d.7short.com/34q9
@@ -358,7 +390,7 @@
 										.webkitHidden;
 									if (typeof hidden == "undefined" || hidden == false) {
 										//应用宝下载地址 (先用分发地址测试)
-										window.location.href = comm.androidDownload;
+										window.location.href = "http://d.7short.com/2s1z";
 									}
 								}, 2000);
 							}
@@ -372,7 +404,7 @@
 										.webkitHidden;
 									if (typeof hidden == "undefined" || hidden == false) {
 										//App store下载地址 (先用分发地址测试)
-										window.location.href = comm.iosDownload;
+										window.location.href = "http://d.7short.com/34q9";
 									}
 								}, 2000);
 							}

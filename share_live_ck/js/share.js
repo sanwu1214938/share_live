@@ -21,6 +21,7 @@ var app = new Vue({
 
 			language: {}, // 语言
 			languageType: '',
+			isXfive: true, //判断是否是x5内核浏览器
 			landScape: 0, // 横竖屏 默认竖屏
 			smallGiftList: null, // 小礼物列表
 			showSmallGift: false,
@@ -55,15 +56,29 @@ var app = new Vue({
 		this.chatListScroll();
 
 		// 视频播放
-		$(function() {
-			_this.aliPlayVideo(_this.liveM3u8);
-		});
+		this.testEnvironment();
+		if (this.isXfive) {
+			$(function() {
+				_this.xFiveVideo("m3u8", _this.liveM3u8, "xinyu_video", "", "", "");
+				setTimeout(() => {
+					// $('#xinyu_video>div:nth-of-type(1)').trigger('click');
+					$(".big-play-icon").trigger("click");
+					SewisePlayer.playerReady(function(id) {
+						SewisePlayer.doPlay();
+					});
+				}, 1000);
+			});
+		} else {
+			$(function() {
+				_this.otherVideo();
+			});
+		}
 
 		// 页面图片加载失败时 默认显示统一处理
 		document.addEventListener("error", function(e) {
 			var elem = e.target;
 			if (elem.tagName.toLowerCase() == "img") {
-				elem.src = "../share_live_aliplayer/img/icon_mine_data_head_default.png";
+				elem.src = "../share_live/img/icon_mine_data_head_default.png";
 			}
 		}, true);
 	},
@@ -223,6 +238,120 @@ var app = new Vue({
 			});
 		},
 
+		// 视频播放
+		xFiveVideo: function(type, videourl, name, poster, button, primary) {
+			var _this = this;
+			SewisePlayer.setup({
+				server: "vod",
+				type: type,
+				videourl: videourl,
+				skin: "vodFoream",
+				claritybutton: !button ? "disable" : "",
+				timedisplay: "disable",
+				controlbardisplay: "disable",
+				topbardisplay: "disable",
+				bigplaybtndisplay: "disable",
+				autostart: "false",
+				buffer: 2,
+				poster: poster,
+				primary: primary
+			}, name);
+
+			// 同层播放设置
+			$('video').attr('webkit-playsinline', 'webkit-playsinline');
+			$('video').attr('x5-video-player-type', 'h5');
+			$('video').attr('x5-video-player-fullscreen', 'true');
+			$('video').attr('x-webkit-airplay', 'true');
+			$('video').attr('playsinline', 'true');
+			$('video').attr('webkit-playsinline', 'true');
+			$('video').attr('controls', 'false');
+			// $('video').attr('x5-playsinline', 'true');
+			// $('video').attr('x5-video-player-type', 'h5-page');
+			// $('video').attr('x5-video-orientation', 'landscape|portrait');
+			window.onresize = function() {
+				$("video")[0].style.width = window.innerWidth + "px";
+				$("video")[0].style.height = window.innerHeight + "px";
+			};
+			// 控制横竖屏(根据后台给的参数设置; 默认竖屏:portraint; 横屏:landscape)
+			if (Number(landScape)) {
+				$('video').attr('x5-video-orientation', 'landscape');
+			} else {
+				$('video').attr('x5-video-orientation', 'portraint');
+			}
+			// $("video")[0].style["object-fit"] = "fill";
+			$("video")[0].addEventListener("x5videoenterfullscreen", function() {
+				// SewisePlayer.fullScreen();
+				// 横竖屏
+				if (Number(landScape)) {
+					_this.landScape = true;
+				} else {
+					_this.landScape = false;
+				}
+			});
+			$("video")[0].addEventListener("x5videoexitfullscreen", function() {
+				// SewisePlayer.noramlScreen();
+				_this.landScape = false;
+			});
+
+			// video暂停事件
+			$("video").on("pause", function() {
+				console.log("暂停");
+			});
+			// 播放事件
+			$("video").on("play", function() {
+				console.log("播放");
+			});
+		},
+		otherVideo: function() {
+			// 同层播放设置
+			$('video').attr('webkit-playsinline', 'webkit-playsinline');
+			$('video').attr('x5-video-player-type', 'h5');
+			$('video').attr('x5-video-player-fullscreen', 'true');
+			$('video').attr('x-webkit-airplay', 'true');
+			$('video').attr('playsinline', 'true');
+			$('video').attr('webkit-playsinline', 'true');
+			// $('video').attr('x5-playsinline', 'true');
+			$('video').attr('controls', 'false');
+
+			// 初始化
+			var options = {
+				autoplay: "true"
+			};
+			var myPlayer = videojs("xinyu_video_other", options, function() {
+				console.log('直播开始！！！')
+			});
+			myPlayer.play();
+			setTimeout(() => {
+				myPlayer.play();
+				$('video').trigger('play');
+			}, 1000);
+		},
+		fullScreen: function() {
+			if (this.isXfive) {
+				SewisePlayer.fullScreen();
+			} else {
+				return;
+			}
+		},
+
+		// 浏览器环境
+		testEnvironment: function() {
+			// 此方法可区分
+			if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+				// alert("微信浏览器");
+				this.isXfive = true;
+			} else if (ua.indexOf(' qq') != -1 && ua.indexOf('mqqbrowser') != -1) {
+				// alert("qq内置浏览器中打开");
+				this.isXfive = true;
+			} else if (ua.indexOf('mqqbrowser') != -1 && ua.indexOf(" qq") == -1) {
+				// alert("qq浏览器app中打开");
+				this.isXfive = true;
+			} else {
+				// alert("其他浏览器中打开");
+				this.isXfive = false;
+			}
+		},
+
 		// 进入直播间 /live/enter
 		enterLive: function() {
 			var _this = this;
@@ -347,82 +476,6 @@ var app = new Vue({
 					}, 2000);
 				}
 			}
-		},
-
-		// 视频播放(阿里)................................................
-		aliPlayVideo: function(videourl) {
-			var _this = this;
-			// 初始化阿里播放器
-			var aliPlayer = new Aliplayer({
-				id: 'xinyu_video',
-				source: videourl,
-				autoplay: true,
-				isLive: true,
-				height: '100%',
-				width: '100%',
-				playsinline: true,
-				useH5Prism: true,
-				useFlashPrism: false,
-				cover: 'http://cdnoss.youkouyang.com/cover.png',
-				//prismplayer 2.0.1版本支持的属性，主要用户实现在android 微信上的同层播放
-				x5_type: 'h5', //通过 video 属性 “x5-video-player-type” 声明启用同层H5播放器，支持的值：h5 https://x5.tencent.com/tbs/guide/video.html
-				x5_fullscreen: true, //通过 video 属性 “x5-video-player-fullscreen” 声明视频播放时是否进入到 TBS 的全屏模式，支持的值：true
-				skinLayout: [{
-						"name": "bigPlayButton",
-						"align": "blabs",
-						"x": 30,
-						"y": 80
-					},
-					{
-						"name": "errorDisplay",
-						"align": "tlabs",
-						"x": 0,
-						"y": 0
-					},
-					{
-						"name": "infoDisplay"
-					},
-					{
-						"name": "controlBar",
-						"align": "blabs",
-						"x": 0,
-						"y": 0,
-						"children": []
-					}
-				]
-			}, function(player) {
-				console.log("The player is created");
-			});
-			
-			// 监听全屏/退出全屏
-			// aliPlayer.on("requestFullScreen", function() {
-			// 	// 横竖屏
-			// 	if (Number(landScape)) {
-			// 		_this.landScape = true;
-			// 	} else {
-			// 		_this.landScape = false;
-			// 	}
-			// });
-			// aliPlayer.on("x5cancelFullScreen", function() {
-			// 	_this.landScape = false;
-			// });
-			
-			// 控制横竖屏(根据后台给的参数设置; 默认竖屏:portraint; 横屏:landscape)
-			// if (Number(landScape)) {
-			// 	$('video').attr('x5-video-orientation', 'landscape');
-			// } else {
-			// 	$('video').attr('x5-video-orientation', 'portraint');
-			// }
-
-			// 同层播放设置
-			$('video').attr('webkit-playsinline', 'true');
-			$('video').attr('playsinline', 'true');
-			$('video').attr('x5-video-player-type', 'h5');
-			$('video').attr('x5-video-orientation', 'portraint');
-			$('video').attr('x5-video-player-fullscreen', 'true');
-			$('video').attr('x-webkit-airplay', 'true');
-			// $('video').style('object-fit', 'fill');
-			// $('video')[0].style["object-fit"] = "fill";
-		},
+		}
 	}
 });
