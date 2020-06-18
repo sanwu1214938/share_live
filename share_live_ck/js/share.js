@@ -21,7 +21,6 @@ var app = new Vue({
 
 			language: {}, // 语言
 			languageType: '',
-			isXfive: true, //判断是否是x5内核浏览器
 			landScape: 0, // 横竖屏 默认竖屏
 			smallGiftList: null, // 小礼物列表
 			showSmallGift: false,
@@ -56,23 +55,13 @@ var app = new Vue({
 		this.chatListScroll();
 
 		// 视频播放
-		this.testEnvironment();
-		if (this.isXfive) {
-			$(function() {
-				_this.xFiveVideo("m3u8", _this.liveM3u8, "xinyu_video", "", "", "");
-				setTimeout(() => {
-					// $('#xinyu_video>div:nth-of-type(1)').trigger('click');
-					$(".big-play-icon").trigger("click");
-					SewisePlayer.playerReady(function(id) {
-						SewisePlayer.doPlay();
-					});
-				}, 1000);
+		this.playVideo("m3u8", _this.liveM3u8, "xinyu_video", "", "", "");
+		setTimeout(() => {
+			$(".big-play-icon").trigger("click");
+			SewisePlayer.playerReady(function(id) {
+				SewisePlayer.doPlay();
 			});
-		} else {
-			$(function() {
-				_this.otherVideo();
-			});
-		}
+		}, 1000);
 
 		// 页面图片加载失败时 默认显示统一处理
 		document.addEventListener("error", function(e) {
@@ -239,7 +228,7 @@ var app = new Vue({
 		},
 
 		// 视频播放
-		xFiveVideo: function(type, videourl, name, poster, button, primary) {
+		playVideo: function(type, videourl, name, poster, button, primary) {
 			var _this = this;
 			SewisePlayer.setup({
 				server: "vod",
@@ -260,6 +249,7 @@ var app = new Vue({
 			// 同层播放设置
 			$('video').attr('webkit-playsinline', 'webkit-playsinline');
 			$('video').attr('x5-video-player-type', 'h5');
+			// $('video').attr('x5-video-player-type', 'h5-page');
 			$('video').attr('x5-video-player-fullscreen', 'true');
 			$('video').attr('x-webkit-airplay', 'true');
 			$('video').attr('playsinline', 'true');
@@ -301,55 +291,6 @@ var app = new Vue({
 			$("video").on("play", function() {
 				console.log("播放");
 			});
-		},
-		otherVideo: function() {
-			// 同层播放设置
-			$('video').attr('webkit-playsinline', 'webkit-playsinline');
-			$('video').attr('x5-video-player-type', 'h5');
-			$('video').attr('x5-video-player-fullscreen', 'true');
-			$('video').attr('x-webkit-airplay', 'true');
-			$('video').attr('playsinline', 'true');
-			$('video').attr('webkit-playsinline', 'true');
-			// $('video').attr('x5-playsinline', 'true');
-			$('video').attr('controls', 'false');
-
-			// 初始化
-			var options = {
-				autoplay: "true"
-			};
-			var myPlayer = videojs("xinyu_video_other", options, function() {
-				console.log('直播开始！！！')
-			});
-			myPlayer.play();
-			setTimeout(() => {
-				myPlayer.play();
-				$('video').trigger('play');
-			}, 1000);
-		},
-		fullScreen: function() {
-			if (this.isXfive) {
-				SewisePlayer.fullScreen();
-			} else {
-				return;
-			}
-		},
-
-		// 浏览器环境
-		testEnvironment: function() {
-			// 此方法可区分
-			if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-				// alert("微信浏览器");
-				this.isXfive = true;
-			} else if (ua.indexOf(' qq') != -1 && ua.indexOf('mqqbrowser') != -1) {
-				// alert("qq内置浏览器中打开");
-				this.isXfive = true;
-			} else if (ua.indexOf('mqqbrowser') != -1 && ua.indexOf(" qq") == -1) {
-				// alert("qq浏览器app中打开");
-				this.isXfive = true;
-			} else {
-				// alert("其他浏览器中打开");
-				this.isXfive = false;
-			}
 		},
 
 		// 进入直播间 /live/enter
