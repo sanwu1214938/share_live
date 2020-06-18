@@ -1,0 +1,48 @@
+{
+	"comm": {
+		"video": "視頻",
+		"comment": "評論",
+		"description": "簡介",
+		"ChooseSeries": "選集",
+		"Hottest": "最熱",
+		"Newest": "最新",
+		"Earliest": "最早",
+		"more": "全文",
+		"abstract": "摘要",
+		"PutItAway": "收起",
+		"SeriesDescription": "分集簡介",
+		"episode": "集",
+		"NoCommentYet": "還沒有評論，快來搶沙發吧",
+		"netError": "網絡超時，請稍後重試",
+		"retry": "點擊重試",
+		"coinTitle": "心幣",
+		"placeholderText": "聊點什麼?",
+		"hotNum": "熱度",
+		"openApp": "請在App打開!",
+		"openBrowser": "請在瀏覽器打開!",
+		"openTitle": "打開心娛APP",
+		"openDesc": "海量視頻等你來看",
+		"openXinyuApp": "打開APP"
+	},
+	"otherdiff": {
+		"SeeMore": "查看更多"
+	},
+	"report": {
+		"reportTitle": "舉報原因",
+		"reportTitleDescription": "描述舉報（選填）",
+		"reportTitleContact": "聯繫方式（選填）",
+		"reportPlaceholder": "填寫舉報理由，可提升舉報成功率(300字以內)",
+		"ContactPlaceholder": "留下您的郵箱/手機號/QQ，方便聯繫！",
+		"submit": "提交",
+		"submitSuccessfully": "提交成功!",
+		"submitFailed": "提交失敗!",
+		"loadingText": "提交中",
+		"uploading": "上傳中...",
+		"done": "上傳成功",
+		"failed": "上傳失敗",
+		"pleaseChoose": "請選擇舉報原因!",
+		"liveReportList": ["違法違禁", "淫穢色情", "假冒及盜版", "虛假宣傳", "未成年人相關", "危險行為", "錄屏、盜播", "侮辱謾罵", "其他"],
+		"dramaReportList": ["廣告營銷", "色情低俗", "時政反動", "血腥暴力", "標題誇張", "欺詐或惡意營銷", "版權侵犯", "其他"],
+		"reportList": ["賬號問題", "功能問題", "支付問題", "投訴故障", "改善意見", "其他"]
+	}
+}

@@ -1,0 +1,48 @@
+{
+	"comm": {
+		"video": "Video",
+		"comment": "Comment",
+		"description": "Description",
+		"ChooseSeries": "Series",
+		"Hottest": "Hottest",
+		"Newest": "Newest",
+		"Earliest": "Earliest",
+		"more": "More",
+		"abstract": "Abstract",
+		"PutItAway": "Put It Away",
+		"SeriesDescription": "Series Description",
+		"episode": "episode",
+		"NoCommentYet": "No Comment Yet",
+		"netError": "Net Error, try again later",
+		"retry": "retry",
+		"coinTitle": "coin",
+		"placeholderText": "Talk about something?",
+		"hotNum": "Hot",
+		"openApp": "Please open in App!",
+		"openBrowser": "Please open in browser!",
+		"openTitle": "Open XinYu APP",
+		"openDesc": "Massive videos waiting for you to watch",
+		"openXinyuApp": "Open APP"
+	},
+	"otherdiff": {
+		"SeeMore": "See More"
+	},
+	"report": {
+		"reportTitle": "Report Reason",
+		"reportTitleDescription": "Description report(optional)",
+		"reportTitleContact": "Contact details(optional)",
+		"reportPlaceholder": "Fill in the reason for the report to increase the success rate of the report (within 300 words)",
+		"ContactPlaceholder": "Leave your email/mobile number/QQ for easy contact!",
+		"submit": "Submit",
+		"submitSuccessfully": "Submitted Successfully!",
+		"submitFailed": "Submission Failed!",
+		"loadingText": "Submitting",
+		"uploading": "Uploading...",
+		"done": "Uploaded Successfully",
+		"failed": "Upload Failed",
+		"pleaseChoose": "Please select a reason for reporting!",
+		"liveReportList": ["Illegal", "Obscene Porn", "Counterfeiting and piracy", "False Promotion", "Minor related", "Dangerous Behavior", "Screen recording, pirate broadcast", "Insult", "Other"],
+		"dramaReportList": ["Advertising marketing", "Vulgar", "Political reaction", "Bloody violence", "Exaggerated title", "Fraud or malicious marketing", "Copyright infringement", "Other"],
+		"reportList": ["Account issues", "Functional problem", "Payment issues", "Complaint of failure", "Suggestions for improvement", "Other"]
+	}
+}

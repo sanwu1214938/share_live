@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<meta content="email=no" name="format-detection">
+		<!--禁止缓存-->
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<!-- facebook分享 -->
+		<meta property="og:title" content="title" />
+		<meta property="og:description" content="description" />
+		<meta property="og:image" content="thumbnail_image" />
+		<!--IE使用EDGE内核-->
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<title>心娱直播</title>
+		<script src="../share_live/js/flexible.js"></script>
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+				font-size: 0;
+			}
+			body,html{
+				width: 100vw;
+				height: 100vh;
+			}
+			#app{
+				position: relative;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			.header {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 1.5rem;
+				background-color: #000000;
+				display: flex;
+				align-items: center;
+				padding: 0 0.269rem;
+			}
+			.xinyu_logo {
+				width: 1.1rem;
+				height: 1.1rem;
+			}
+			.title_desc {
+				flex: 1;
+				height: 80%;
+				padding: 0 0.269rem;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				align-items: flex-start;
+			}
+			.title_desc p {
+				color: #FFFFFF;
+			}
+			.title_desc p:nth-of-type(1) {
+				font-size: 0.4rem;
+			}
+			.title_desc p:nth-of-type(2) {
+				width: 5rem;
+				color: #EEEEEE;
+				font-size: 0.32rem;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+			.open_btn {
+				color: #FFFFFF;
+				font-size: 0.38rem;
+				width: 2.222rem;
+				height: 0.88rem;
+				border-radius: 0.44rem;
+				border: 1px #FFFFFF solid;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.open_btn span{
+				color: #FFFFFF;
+				font-size: 0.38rem;
+			}
+			.xinyu_bg {
+				width: 100vw;
+				height: auto;
+			}
+			
+			/* 遮罩层部分 */
+			.fixed_mask{
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100vw;
+				height: 100vh;
+				background-color: rgba(0,0,0,0.5);
+				z-index: 20000;
+				pointer-events: auto;
+			}
+			.fixed_top_guide{
+				width: 100%;
+				height: 3.253rem;
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 100;
+				background-color: #FFFFFF;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				padding: 0.444rem 0.222rem 0.222rem 0.222rem;
+			}
+			.guide_content{
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+			}
+			.guide_content>div{
+				font-size: 0.5rem;
+				color: #666666;
+				font-weight: bold;
+			}
+			.guide_icon{
+				display: flex;
+				align-items: center;
+			}
+			.guide_icon img{
+				width: 0.666rem;
+				height: 0.666rem;
+			}
+			.guide_line{
+				width: 2.293rem;
+				height: 2.232rem;
+				position: relative;
+				bottom: 0.222rem;
+			}
+			/* 禁止遮罩层下方页面滚动 */
+			.body-no-scroll{
+				position: relative;
+				height: 100%;
+				overflow: auto;
+				-webkit-overflow-scrolling: touch;
+			}
+			.html-no-scroll{
+				height: 100%;
+				overflow: auto;
+				-webkit-overflow-scrolling: touch;
+			}
+			/* 下载按钮 */
+			.down_btn{
+				position: absolute;
+				width: 50vw;
+				height: auto;
+				top: 77vw;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+			
+			/* 简单适配PC页面 */
+			@media (min-width: 660px) {
+				body,html{
+					/* background-color: #373737; */
+					background-color: rgb(39,39,39);
+				}
+				#app{
+					width: 660px!important;
+					margin: 0 auto!important;
+				}
+				#app .xinyu_bg{
+					width: 100%;
+				}
+				.down_btn{
+					width: 44%;
+					top: 44%;
+				}
+				.video_container{
+					width: 100%!important;
+				}
+				.cover_header{
+					width: 100%!important;
+				}
+				
+				 /*滚动条样式*/
+				 body::-webkit-scrollbar {/*滚动条整体样式*/
+				     width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+				     height: 4px;
+				 }
+				 body::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+				     border-radius: 5px;
+				     -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+				     background: rgba(0,0,0,0.2);
+				 }
+				 body::-webkit-scrollbar-track {/*滚动条里面轨道*/
+				     -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+				     border-radius: 0;
+				     background: rgba(0,0,0,0.1);
+				 }
+				div::-webkit-scrollbar {/*滚动条整体样式*/
+				    width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+				    height: 10px;
+				}
+				div::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+				    border-radius: 5px;
+				    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+				    background: rgba(255,111,0,0.2);
+				}
+				div::-webkit-scrollbar-track {/*滚动条里面轨道*/
+				    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+				    border-radius: 5px;
+				    background: rgba(0,0,0,0.1);
+				}
+				p::-webkit-scrollbar{
+				    width: 0px;
+					height: 0px;
+				    background: none;
+				}
+				
+			}
+			/* @media (max-width: 320px) {
+				body,html{
+					width: 320px!important;
+					margin: 0 auto!important;
+				}
+			} */
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="header">
+				<img class="xinyu_logo" src="../share_live/img/icon_download_logo@2x.png">
+				<div class="title_desc">
+					<p v-cloak>{{language.comm.openTitle}}</p>
+					<p v-cloak>{{language.comm.openDesc}}</p>
+				</div>
+				<div class="open_btn" @click="toApp">
+					<span v-cloak>
+						{{language.comm.openXinyuApp}}
+					</span>
+				</div>
+			</div>
+			<img class="xinyu_bg" src="../share_live/img/bg_download@2x.png">
+
+			<!-- 遮罩层(微信提示用户浏览器打开) -->
+			<div class="fixed_mask" v-if="showMask" v-cloak >
+				<div class="fixed_top_guide">
+					<div class="guide_content">
+						<div>点击右上角</div>
+						<div class="guide_icon">
+							选择"浏览器<img src="../share_live/img/safari@2x.png">/<img src="../share_live/img/browser@2x.png">打开"
+						</div>
+					</div>
+					<img class="guide_line" src="../share_live/img/guide_line@2x.png">
+				</div>
+			</div>
+			
+			<!-- 下载按钮 -->
+			<img class="down_btn" src="../share_live/img/icon_download_default@2x.png" @click="toApp" >
+		</div>
+
+		<script src="../share_live/js/jquery.min.js"></script>
+		<script src="../share_live/js/vue.min.js"></script>
+		<script>
+			var timer = null;
+			var app = new Vue({
+				el: '#app',
+				data: function() {
+					return {
+						language: {}, // 语言
+						pageType: "", // 将要跳转的页面类型, drama  movie  variety live
+						pageDataId: "", // 将要跳转的页面的具体ID, dramaID  movieID  varietyID liveID
+						showMask: false, // 是否显示遮罩层
+					}
+				},
+				created() {
+					var _this = this;
+
+					// 获取多语言数据
+					this.getLanguageData((data, str) => {
+						console.log("语言数据:", data);
+						console.log("语言:", str);
+						_this.language = data;
+					});
+
+					// 获取URL地址参数
+					this.pageType = this.GetUrlData("type");
+					this.pageDataId = this.GetUrlData("dataId");
+					console.log("页面类型:", this.pageType);
+					console.log("页面ID:", this.pageDataId);
+				},
+				mounted() {
+					var u = navigator.userAgent;
+					var isWeixin = u.toLowerCase().indexOf('micromessenger') !== -1; // 微信内
+					var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端
+					var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+					// 微信内
+					if (isWeixin) {
+						// alert(_this.language.comm.openBrowser);
+						this.showMask = true;
+						$('body').addClass('body-no-scroll');
+						$('html').addClass('html-no-scroll');
+					}
+				},
+				methods: {
+					// 获取url参数值
+					GetUrlData: function(paras) {
+						var url = location.href;
+						if (url.charAt(url.indexOf("?") + 1) == "&") {
+							paraString = url.substring(url.indexOf("?") + 2, url.length).split("&");
+						} else {
+							paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+						}
+						var paraObj = {};
+
+						for (i = 0; j = paraString[i]; i++) {
+							paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length)
+						}
+						var returnValue = paraObj[paras.toLowerCase()];
+						if (typeof(returnValue) == "undefined") {
+							return ""
+						} else {
+							return returnValue
+						}
+					},
+					// 获取语言文件
+					getLanguageData: function(fun) {
+						var search = location.search.replace(/^\?/, '').split('&');
+
+						function get_url_data(key) {
+							var val = '';
+							search.map(function(k_v) {
+								k_v = k_v.split('=');
+								if (k_v[0] == key) {
+									val = k_v[1];
+								}
+							});
+							return val;
+						}
+						var lang = get_url_data('lang') || this.GetUrlData("lang");
+						// var lang = this.GetUrlData("lang");
+						var str = !lang || lang == "zh_CN" ? "zh_CN" : lang;
+						$.ajax({
+							url: "../share_live/lang/" + str + ".json",
+							async: false,
+							success: function(data) {
+								fun(data, str);
+							}
+						});
+					},
+					// 跳转App
+					// 安卓：http://d.7short.com/2s1z
+					// iOS： http://d.7short.com/34q9
+					// amm://app/movie/detail?type=movie&dataId=20&accessProgress=2915009
+					toApp: function() {
+						var _this = this;
+						var u = navigator.userAgent;
+						var isWeixin = u.toLowerCase().indexOf('micromessenger') !== -1; // 微信内
+						var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端
+						var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
+						// 微信内
+						if (isWeixin) {
+							// alert(_this.language.comm.openBrowser);
+							this.showMask = true;
+							$('body').addClass('body-no-scroll');
+							$('html').addClass('html-no-scroll');
+						} else {
+							this.showMask = false;
+							$('body').removeClass('body-no-scroll');
+							$('html').removeClass('html-no-scroll');
+							//android端
+							if (isAndroid) {
+								//安卓app的scheme协议
+								window.location.href = 'amm://app/' + _this.pageType + '/detail?type=' + _this.pageType + '&dataId=' + _this
+									.pageDataId + '';
+								timer = setTimeout(function() {
+									let hidden = window.document.hidden || window.document.mozHidden || window.document.msHidden || window.document
+										.webkitHidden;
+									if (typeof hidden == "undefined" || hidden == false) {
+										//应用宝下载地址 (先用分发地址测试)
+										window.location.href = "http://d.7short.com/2s1z";
+									}
+								}, 2000);
+							}
+							//ios端
+							if (isIOS) {
+								//ios的scheme协议
+								window.location.href = 'amm://app/' + _this.pageType + '/detail?type=' + _this.pageType + '&dataId=' + _this
+									.pageDataId + '';
+								timer = setTimeout(function() {
+									let hidden = window.document.hidden || window.document.mozHidden || window.document.msHidden || window.document
+										.webkitHidden;
+									if (typeof hidden == "undefined" || hidden == false) {
+										//App store下载地址 (先用分发地址测试)
+										window.location.href = "http://d.7short.com/34q9";
+									}
+								}, 2000);
+							}
+						}
+
+						// 防止打开app后还会跳到下载页
+						$(document).on('visibilitychange webkitvisibilitychange', function() {
+							var tag = document.hidden || document.webkitHidden;
+							if (tag) {
+								clearTimeout(timer);
+							}
+						})
+						$(window).on('pagehide', function() {
+							clearTimeout(timer);
+						})
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

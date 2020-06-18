@@ -1,0 +1,48 @@
+{
+	"comm": {
+		"video": "视频",
+		"comment": "评论",
+		"description": "简介",
+		"ChooseSeries": "选集",
+		"Hottest": "最热",
+		"Newest": "最新",
+		"Earliest": "最早",
+		"more": "全文",
+		"abstract": "摘要",
+		"PutItAway": "收起",
+		"SeriesDescription": "分集简介",
+		"episode": "集",
+		"NoCommentYet": "还没有评论，快来抢沙发吧",
+		"netError": "网络超时，请稍后重试",
+		"retry": "点击重试",
+		"coinTitle": "心币",
+		"placeholderText": "聊点什么?",
+		"hotNum": "热度",
+		"openApp": "请在App打开!",
+		"openBrowser": "请在浏览器打开!",
+		"openTitle": "打开心娱APP",
+		"openDesc": "海量视频等你来看",
+		"openXinyuApp": "打开APP"
+	},
+	"otherdiff": {
+		"SeeMore": "查看更多"
+	},
+	"report": {
+		"reportTitle": "举报原因",
+		"reportTitleDescription": "描述举报（选填）",
+		"reportTitleContact": "联系方式（选填）",
+		"reportPlaceholder": "填写举报理由，可提升举报成功率(300字以内)",
+		"ContactPlaceholder": "留下您的邮箱/手机号/QQ，方便联系！",
+		"submit": "提交",
+		"submitSuccessfully": "提交成功!",
+		"submitFailed": "提交失败!",
+		"loadingText": "提交中",
+		"uploading": "上传中...",
+		"done": "上传成功",
+		"failed": "上传失败",
+		"pleaseChoose": "请选择举报原因!",
+		"liveReportList": ["违法违禁", "淫秽色情", "假冒及盗版", "虚假宣传", "未成年人相关", "危险行为", "录屏、盗播", "侮辱谩骂", "其他"],
+		"dramaReportList": ["广告营销", "色情低俗", "时政反动", "血腥暴力", "标题夸张", "欺诈或恶意营销", "版权侵犯", "其他"],
+		"reportList": ["账号问题", "功能问题", "支付问题", "投诉故障", "改善意见", "其他"]
+	}
+}

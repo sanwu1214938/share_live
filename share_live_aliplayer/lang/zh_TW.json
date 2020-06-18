@@ -1,0 +1,30 @@
+{
+	"comm": {
+		"video": "視頻",
+		"comment": "評論",
+		"description": "簡介",
+		"ChooseSeries": "選集",
+		"Hottest": "最熱",
+		"Newest": "最新",
+		"Earliest": "最早",
+		"more": "全文",
+		"abstract": "摘要",
+		"PutItAway": "收起",
+		"SeriesDescription": "分集簡介",
+		"episode": "集",
+		"NoCommentYet": "還沒有評論，快來搶沙發吧",
+		"netError": "網絡超時，請稍後重試",
+		"retry": "點擊重試",
+		"coinTitle": "心币",
+		"placeholderText": "聊點什麽?",
+		"hotNum": "熱度",
+		"openApp": "請在App打開!",
+		"openBrowser": "請在瀏覽器打開!",
+		"openTitle": "打開心娛APP",
+		"openDesc": "海量視頻等妳來看",
+		"openXinyuApp": "打開APP"
+	},
+	"otherdiff": {
+		"SeeMore": "查看更多"
+	}
+}
