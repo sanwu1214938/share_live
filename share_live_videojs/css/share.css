@@ -210,7 +210,7 @@ body{
 	height: 0.3rem!important;
 }
 .xinbi_container p{
-	min-width: 1.44rem;
+	/* min-width: 1.69rem; */
 	height: 0.373rem;
 	line-height: 0.373rem;
 	text-align: left;
