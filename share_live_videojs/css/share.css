@@ -35,65 +35,50 @@ body{
 
 
 /* ---------------------------------------视频播放部分--------------------------------------- */
+/* 1.容器 */
 .video_container{
 	width: 100vw;
 	height: 100vh;
+	position: relative;
 }
-.video_container>.video-js{
-	width: 100%!important;
-	height: 100%!important;
+#xinyu_video{
+	width: 100vw;
+	height: 100vh;
 }
-.video_container>.video-js>video{
-	width: 100%!important;
-	height: 100%!important;
-	/* object-fit: initial; */
-	/* object-fit: cover; */
-	/* background-color: transparent!important; */
+video{
+	object-fit: fill;
 }
-/* 2.播放按钮自定义 */
-/* 改变播放按钮形状 */
-.video-js .vjs-big-play-button{
-	border: none!important;
-    font-size: 2.5em!important;
-	width: 2.5em!important;
-    height: 2.5em!important;
-	line-height: 2.5em!important;
-	text-align: center!important;
-    -webkit-border-radius: 2.5em!important;
-    -moz-border-radius: 2.5em!important;
-    border-radius: 2.5em!important;
-    background-color: rgba(255,111,0,.2)!important;
-    border-width: 1px!important;
-    margin-top: -1.25em!important;
-	margin-left: -1.25em!important;
+/* 2.中间大的播放按钮 和 加载中 */
+.diy_play_btn, .diy_loading_btn{
+	width: 2rem;
+	height: 2rem;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+	z-index: 1000;
 }
-/* 中间的播放箭头 */
-.vjs-big-play-button .vjs-icon-placeholder {
-    font-size: 1.63em!important;
-	color: #FF6F00;
+.diy_play_btn{
+	pointer-events: auto;
 }
-/* 加载圆圈 */
-.vjs-loading-spinner {
-    font-size: 2.5em!important;
-    width: 2em!important;
-    height: 2em!important;
-    border-radius: 1em!important;
-    /* margin-top: -1em!important;
-    margin-left: -1.5em!important; */
+.diy_loading_btn{
+	pointer-events: none!important;
+	width: 2.222rem!important;
+	height: 2.222rem!important;
+	animation: loading 1s infinite linear;
 }
-/* 暂停时也显示播放按钮 */
-.vjs-paused .vjs-big-play-button,
-.vjs-paused.vjs-has-started .vjs-big-play-button {
-    display: block!important;
-}
-/* 点击屏幕播放/暂停 */
-.video-js.vjs-playing .vjs-tech {
-    pointer-events: auto!important;
-}
-/* 底部控制条 */
-.vjs-control-bar{
-	visibility: hidden!important;
+.vjs-loading-spinner{
 	display: none!important;
+}
+@keyframes loading{
+	from{transform: rotateZ(0deg);transform-origin: center;}
+	to{transform: rotateZ(360deg);transform-origin: center;}
+}
+@-webkit-keyframes loading{
+	from{transform: rotateZ(0deg);transform-origin: center;}
+	to{transform: rotateZ(360deg);transform-origin: center;}
 }
 
 

@@ -1,3 +1,4 @@
+var myPlayer;
 // 此方法可区分
 var ua = navigator.userAgent.toLowerCase();
 // svga礼物列表
@@ -19,6 +20,8 @@ var app = new Vue({
 			liveTips: "", // 直播间提示标题
 			liveM3u8: "", // 直播m3u8地址
 			livePoster: "", // 直播封面
+			showPlayBtn: true, // 是否显示中间播放按钮
+			showLoadingBtn: false, // 是否显示中间正在加载按钮
 
 			language: {}, // 语言
 			languageType: '',
@@ -62,7 +65,7 @@ var app = new Vue({
 		document.addEventListener("error", function(e) {
 			var elem = e.target;
 			if (elem.tagName.toLowerCase() == "img") {
-				elem.src = "../share_live_videojs/img/icon_mine_data_head_default.png";
+				elem.src = sourcesPath + "img/icon_mine_data_head_default.png";
 			}
 		}, true);
 	},
@@ -220,18 +223,85 @@ var app = new Vue({
 
 		// 视频播放
 		playVideo: function() {
+			var that = this;
 			// 同层播放设置
-			// $('video').attr('webkit-playsinline', 'webkit-playsinline');
-			// $('video').attr('x5-video-player-type', 'h5');
-			// $('video').attr('x5-video-player-fullscreen', 'true');
-			// $('video').attr('x-webkit-airplay', 'true');
-			// $('video').attr('playsinline', 'true');
-			// $('video').attr('webkit-playsinline', 'true');
-			// $('video').attr('x5-playsinline', 'true');
-			// $('video').attr('controls', 'false');
+			$('video').attr('webkit-playsinline', 'true');
+			$('video').attr('playsinline', 'true');
+			$('video').attr('x5-video-player-type', 'h5');
+			$('video').attr('x5-video-orientation', 'portraint');
+			$('video').attr('x5-video-player-fullscreen', 'true');
+			$('video').attr('x-webkit-airplay', 'true');
 
 			// 初始化
-			
+			var options = {
+				muted: true,
+				autoplay: false,
+				preload: "auto",
+				controls: false,
+				height: "100%",
+				width: "100%",
+				loop: false,
+				// poster: that.livePoster,
+				poster: "../share_live_videojs/img/bg_download@2x.png",
+				// children: [
+				// 	{ name: 'playToggle' }, // 播放按钮
+				// 	{ name: 'FullscreenToggle' } // 全屏
+				// ]
+			};
+			myPlayer = videojs("xinyu_video", options, function onPlayerReady() {
+				videojs.log("播放器已经准备好了!");
+				// 注意，这个地方的上下文， `this` 指向的是Video.js的实例对像myPlayer
+				// console.log("videojs:", this, that);
+				// this.load();
+				// this.play();
+				// 如何使用事件监听？
+				this.on('pause', function() {
+					// player.posterImage.setSrc('../share_live_videojs/img/bg_download@2x.png');
+					console.log('暂停播放');
+					that.showPlayBtn = true;
+					that.showLoadingBtn = false;
+				});
+				this.on('play', function() {
+					console.log('开始/恢复播放');
+					that.showPlayBtn = false;
+					that.showLoadingBtn = false;
+				});
+				this.on('ended', function() {
+					console.log('结束播放');
+					that.showPlayBtn = true;
+					that.showLoadingBtn = false;
+				});
+				this.on('loadstart', function() { //客户端开始请求数据
+					console.log("客户端开始请求数据");
+				});
+				this.on('progress', function() { //客户端正在请求数据
+					console.log("客户端正在请求数据");
+				});
+				this.on('abort', function() { //客户端主动终止下载（不是因为错误引起）
+					console.log("客户端主动终止下载");
+				});
+				this.on('error', function() { //请求数据时遇到错误
+					console.log("请求数据时遇到错误");
+				});
+				this.on('stalled', function() { //网速异常
+					console.log("网速异常");
+				});
+				this.on('waiting', function() { //等待数据，并非错误
+					console.log("等待数据");
+					that.showPlayBtn = false;
+					that.showLoadingBtn = true;
+				});
+				this.on('loadeddata', function() { //渲染画面
+					console.log('loadeddata数据加载完成');
+					that.showPlayBtn = false;
+					that.showLoadingBtn = false;
+				});
+			});
+		},
+		// 播放
+		userPlay: function() {
+			this.showPlayBtn = false;
+			myPlayer.play();
 		},
 
 		// 进入直播间 /live/enter
@@ -325,7 +395,8 @@ var app = new Vue({
 			if (isWeixin) {
 				var userConfirm = confirm(_this.language.comm.openApp);
 				if (userConfirm == true) {
-					window.location.href = '' + comm.wxTodown + '?lang=' + _this.languageType + '&type=live&dataId=' + _this.chatRoomID + '';
+					window.location.href = '' + comm.wxTodown + '?lang=' + _this.languageType + '&type=live&dataId=' + _this.chatRoomID +
+						'';
 				} else {
 					return;
 				}

@@ -21,7 +21,7 @@
 		<link rel="icon shortcut" href="favicon.ico" />
 		<link rel="stylesheet" href="../share_live_videojs/css/share.css" />
 		<!-- 播放器 videojs -->
-		
+		<link rel="stylesheet" href="../share_live_videojs/css/video-js-7.8.2.css">
 		<script src="../share_live_videojs/js/flexible.js"></script>
 		<script>
 			var sourcesPath = "../share_live_videojs/";
@@ -35,12 +35,29 @@
 			<!--播放视频部分其-->
 			<div class="video_container">
 				<!-- 播放器部分 xinyu_video-->
-				
+				<video id="xinyu_video" class="video-js vjs-big-play-centered vjs-fluid" data-setip = "{}">
+					<!-- hls直播源地址：CCTV6高清 -->
+					<!-- <source src="http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8"> -->
+					<!-- <source src="http://ivi.bupt.edu.cn/hls/cctv3hd.m3u8"> -->
+					<source :src="liveM3u8">
+					<!-- RTMP直播源地址(移动端不支持)-->
+					<!-- <source src="rtmp://58.200.131.2:1935/livetv/hunantv"> -->
+					
+					<p class="vjs-no-js">
+						To view this video please enable JavaScript, and consider upgrading to a web browser that
+						<a href="https://videojs.com/html5-video-support/" target="_blank">
+							supports HTML5 video
+						</a>
+					</p>
+				</video>
+				<!-- 播放按钮 -->
+				<img class="diy_play_btn" src="../share_live_videojs/img/play.png" @click="userPlay()" v-if="showPlayBtn" >
+				<img class="diy_loading_btn" src="../share_live_videojs/img/loading.png" v-if="showLoadingBtn" >
 				
 				<!-- 播放时显示的部分-->
 				<!-- 头部 img/head_default.png-->
 				<div class="cover_header">
-					<div class="head_attation">
+					<div v-cloak class="head_attation">
 						<img v-cloak class="head_img" :src="imgBaseUrl + liveMaster.avatar">
 						<div class="nickname_hotnum">
 							<p v-cloak class="nickname">{{liveMaster.nickname}}</p>
@@ -55,21 +72,21 @@
 					</div>
 				</div>
 				<!-- 心币 -->
-				<div class="xinbi_container" @click="toApp">
-					<img src="../share_live_videojs/img/gold_icon.png" v-cloak>
+				<div v-cloak class="xinbi_container" @click="toApp">
+					<img v-cloak src="../share_live_videojs/img/gold_icon.png">
 					<p v-cloak>{{language.comm.coinTitle}} {{liveMaster.totalTicket?liveMaster.totalTicket:0}}</p>
-					<img class="for_more" src="../share_live_videojs/img/icon_live_detail_more.png" v-cloak>
+					<img v-cloak class="for_more" src="../share_live_videojs/img/icon_live_detail_more.png">
 				</div>
 				
 				<!-- (讨论)聊天列表 -->
 				<div class="small_gift_container" v-if="smallGiftList&&showSmallGift">
-					<img :src="imgBaseUrl + smallGiftList.avatar" >
+					<img v-cloak :src="imgBaseUrl + smallGiftList.avatar" >
 					<div class="nickname_desc">
-						<p>{{smallGiftList.nickname}}</p>
-						<p>送出 {{smallGiftList.giftInfo.giftName}}</p>
+						<p v-cloak>{{smallGiftList.nickname}}</p>
+						<p v-cloak>送出 {{smallGiftList.giftInfo.giftName}}</p>
 					</div>
-					<img :src="smallGiftList.giftInfo.showUrl" class="gift_tupian" >
-					<p class="small_gift_num"> ×{{smallGiftNum}}</p>
+					<img v-cloak :src="smallGiftList.giftInfo.showUrl" class="gift_tupian" >
+					<p v-cloak class="small_gift_num"> ×{{smallGiftNum}}</p>
 				</div>
 				<div class="chat_list_container">
 					<div class="chat_item_container" id="chat_item_container">
@@ -108,7 +125,7 @@
 		var liveM3u8 = $('#body_diy').attr("data-liveM3u8");
 	</script>
 	<!-- 播放器 videojs -->
-	
+	<script src="../share_live_videojs/js/video-7.8.2.js"></script>
 	<!-- 接入腾讯IM -->
 	<script src="../share_live_videojs/js/tim-js.js"></script>
 	<!-- svgaPlayer -->
