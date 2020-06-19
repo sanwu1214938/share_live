@@ -255,36 +255,21 @@ var app = new Vue({
 				// this.load();
 				// this.play();
 				// 如何使用事件监听？
+				this.on('play', function() {
+					console.log('开始/恢复播放');
+					that.showPlayBtn = false;
+					that.showLoadingBtn = false;
+				});
 				this.on('pause', function() {
 					// player.posterImage.setSrc('../share_live_videojs/img/bg_download@2x.png');
 					console.log('暂停播放');
 					that.showPlayBtn = true;
 					that.showLoadingBtn = false;
 				});
-				this.on('play', function() {
-					console.log('开始/恢复播放');
-					that.showPlayBtn = false;
-					that.showLoadingBtn = false;
-				});
 				this.on('ended', function() {
 					console.log('结束播放');
 					that.showPlayBtn = true;
 					that.showLoadingBtn = false;
-				});
-				this.on('loadstart', function() { //客户端开始请求数据
-					console.log("客户端开始请求数据");
-				});
-				this.on('progress', function() { //客户端正在请求数据
-					console.log("客户端正在请求数据");
-				});
-				this.on('abort', function() { //客户端主动终止下载（不是因为错误引起）
-					console.log("客户端主动终止下载");
-				});
-				this.on('error', function() { //请求数据时遇到错误
-					console.log("请求数据时遇到错误");
-				});
-				this.on('stalled', function() { //网速异常
-					console.log("网速异常");
 				});
 				this.on('waiting', function() { //等待数据，并非错误
 					console.log("等待数据");
@@ -296,6 +281,31 @@ var app = new Vue({
 					that.showPlayBtn = false;
 					that.showLoadingBtn = false;
 				});
+				this.on('canplay', function() { //canplay
+					console.log("canplay!!!");
+					that.showPlayBtn = false;
+					that.showLoadingBtn = false;
+				});
+				this.on('error', function() { //请求数据时遇到错误
+					console.log("请求数据时遇到错误");
+				});
+				
+				// this.on('loadstart', function() { //客户端开始请求数据
+				// 	console.log("客户端开始请求数据");
+				// });
+				// this.on('progress', function() { //客户端正在请求数据
+				// 	console.log("客户端正在请求数据");
+				// });
+				// this.on('abort', function() { //客户端主动终止下载（不是因为错误引起）
+				// 	console.log("客户端主动终止下载");
+				// });
+				// this.on('stalled', function() { //网速异常
+				// 	console.log("网速异常");
+				// });
+				// //timeupdate 事件在音频/视频（audio/video）的播放位置发生改变时触发
+				// this.on('timeupdate', function() {
+				// 	console.log("当前播放的进度");
+				// });
 			});
 		},
 		// 播放

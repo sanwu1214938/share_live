@@ -51,8 +51,8 @@
 					</p>
 				</video>
 				<!-- 播放按钮 -->
-				<img class="diy_play_btn" src="../share_live_videojs/img/play.png" @click="userPlay()" v-if="showPlayBtn" >
-				<img class="diy_loading_btn" src="../share_live_videojs/img/loading.png" v-if="showLoadingBtn" >
+				<img v-cloak class="diy_play_btn" src="../share_live_videojs/img/play.png" @click="userPlay()" v-if="showPlayBtn" >
+				<img v-cloak class="diy_loading_btn" src="../share_live_videojs/img/loading.png" v-if="showLoadingBtn" >
 				
 				<!-- 播放时显示的部分-->
 				<!-- 头部 img/head_default.png-->
