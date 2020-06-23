@@ -46,7 +46,11 @@ body{
 	height: 100vh;
 }
 video{
-	object-fit: fill;
+	object-fit: fill!important;
+}
+.vjs-poster{
+	background-repeat: no-repeat!important;
+	background-size: 100% 100%!important;
 }
 /* 2.中间大的播放按钮 和 加载中 */
 .diy_play_btn, .diy_loading_btn{
