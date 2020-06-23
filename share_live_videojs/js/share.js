@@ -22,6 +22,7 @@ var app = new Vue({
 			livePoster: "", // 直播封面
 			showPlayBtn: true, // 是否显示中间播放按钮
 			showLoadingBtn: false, // 是否显示中间正在加载按钮
+			wxShowPlayBtn: true, // 微信中监听canplay真他妈有病(解决微信中监听canplay事件的奇葩毛病)
 
 			language: {}, // 语言
 			languageType: '',
@@ -259,6 +260,7 @@ var app = new Vue({
 					console.log('开始/恢复播放');
 					that.showPlayBtn = false;
 					that.showLoadingBtn = false;
+					that.wxShowPlayBtn = false;
 				});
 				this.on('pause', function() {
 					// player.posterImage.setSrc('../share_live_videojs/img/bg_download@2x.png');
@@ -283,7 +285,12 @@ var app = new Vue({
 				});
 				this.on('canplay', function() { //canplay
 					console.log("canplay!!!");
-					that.showPlayBtn = false;
+					// that.showPlayBtn = true;
+					if (!that.wxShowPlayBtn) {
+						that.showPlayBtn = false;
+					} else {
+						that.showPlayBtn = true;
+					}
 					that.showLoadingBtn = false;
 				});
 				this.on('error', function() { //请求数据时遇到错误
