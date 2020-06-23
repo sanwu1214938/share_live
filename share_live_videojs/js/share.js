@@ -236,7 +236,7 @@ var app = new Vue({
 			// 初始化
 			var options = {
 				muted: true,
-				autoplay: false,
+				autoplay: true,
 				preload: "auto",
 				controls: false,
 				height: "100%",
