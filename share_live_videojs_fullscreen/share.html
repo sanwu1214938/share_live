@@ -51,10 +51,10 @@
 					</p>
 				</video>
 				<!-- 播放按钮 -->
-				<img v-cloak class="diy_play_btn" src="../share_live_videojs_fullscreen/img/play.png" @click="userPlay()" v-if="showPlayBtn" >
+				<img v-cloak class="diy_play_btn" src="../share_live_videojs_fullscreen/img/play.png" @click="userPlay" v-if="showPlayBtn" >
 				<img v-cloak class="diy_loading_btn" src="../share_live_videojs_fullscreen/img/loading.png" v-if="showLoadingBtn" >
 				<!-- 全屏按钮 -->
-				<img src="../share_live_videojs_fullscreen/img/quanping.png" >
+				<img v-cloak class="diy_fullscreen_btn" src="../share_live_videojs_fullscreen/img/quanping.png" @click="userFullscreen" >
 				
 				<!-- 播放时显示的部分-->
 				<!-- 头部 img/head_default.png-->

@@ -84,6 +84,13 @@ video{
 	from{transform: rotateZ(0deg);transform-origin: center;}
 	to{transform: rotateZ(360deg);transform-origin: center;}
 }
+/* 3.全屏按钮 */
+.diy_fullscreen_btn{
+	width: 1rem;
+	position: absolute;
+	bottom: 1.444rem;
+	right: 0.111rem;
+}
 
 
 /* ---------------------------------------video上方样式层--------------------------------------- */

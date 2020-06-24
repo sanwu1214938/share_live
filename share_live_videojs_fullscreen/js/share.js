@@ -230,6 +230,7 @@ var app = new Vue({
 			$('video').attr('playsinline', 'true');
 			$('video').attr('x5-video-player-type', 'h5');
 			$('video').attr('x5-video-orientation', 'portraint');
+			// $('video').attr('x5-video-orientation', 'landscape');
 			$('video').attr('x5-video-player-fullscreen', 'true');
 			$('video').attr('x-webkit-airplay', 'true');
 
@@ -296,6 +297,14 @@ var app = new Vue({
 				this.on('error', function() { //请求数据时遇到错误
 					console.log("请求数据时遇到错误");
 				});
+				this.on('fullscreenchange', function() { //监听全屏操作
+					console.log("监听全屏操作");
+					if (this.isFullscreen()) {
+						console.log("全屏!");
+					} else {
+						console.log("退出全屏!");
+					}
+				});
 				
 				// this.on('loadstart', function() { //客户端开始请求数据
 				// 	console.log("客户端开始请求数据");
@@ -319,6 +328,10 @@ var app = new Vue({
 		userPlay: function() {
 			this.showPlayBtn = false;
 			myPlayer.play();
+		},
+		// 全屏
+		userFullscreen: function() {
+			myPlayer.requestFullscreen();
 		},
 
 		// 进入直播间 /live/enter
