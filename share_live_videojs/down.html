@@ -18,9 +18,9 @@
 		<!--IE使用EDGE内核-->
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 		<title>心娱直播</title>
-		<script src="../share_live/js/flexible.js"></script>
+		<script src="../share_live_videojs/js/flexible.js"></script>
 		<script>
-			var sourcesPath = "../share_live/";
+			var sourcesPath = "../share_live_videojs/";
 		</script>
 		<style>
 			[v-cloak] {
@@ -243,7 +243,7 @@
 	<body>
 		<div id="app">
 			<div class="header">
-				<img class="xinyu_logo" src="../share_live/img/icon_download_logo@2x.png">
+				<img class="xinyu_logo" src="../share_live_videojs/img/icon_download_logo@2x.png">
 				<div class="title_desc">
 					<p v-cloak>{{language.comm.openTitle}}</p>
 					<p v-cloak>{{language.comm.openDesc}}</p>
@@ -254,7 +254,7 @@
 					</span>
 				</div>
 			</div>
-			<img class="xinyu_bg" src="../share_live/img/bg_download@2x.png">
+			<img class="xinyu_bg" src="../share_live_videojs/img/bg_download@2x.png">
 
 			<!-- 遮罩层(微信提示用户浏览器打开) -->
 			<div class="fixed_mask" v-if="showMask" v-cloak >
@@ -262,20 +262,20 @@
 					<div class="guide_content">
 						<div>点击右上角</div>
 						<div class="guide_icon">
-							选择"浏览器<img src="../share_live/img/safari@2x.png">/<img src="../share_live/img/browser@2x.png">打开"
+							选择"浏览器<img src="../share_live_videojs/img/safari@2x.png">/<img src="../share_live_videojs/img/browser@2x.png">打开"
 						</div>
 					</div>
-					<img class="guide_line" src="../share_live/img/guide_line@2x.png">
+					<img class="guide_line" src="../share_live_videojs/img/guide_line@2x.png">
 				</div>
 			</div>
 			
 			<!-- 下载按钮 -->
-			<img class="down_btn" src="../share_live/img/icon_download_default@2x.png" @click="toApp" >
+			<img class="down_btn" src="../share_live_videojs/img/icon_download_default@2x.png" @click="toApp" >
 		</div>
 
-		<script src="../share_live/js/jquery.min.js"></script>
-		<script src="../share_live/js/common.js"></script>
-		<script src="../share_live/js/vue.min.js"></script>
+		<script src="../share_live_videojs/js/jquery.min.js"></script>
+		<script src="../share_live_videojs/js/common.js"></script>
+		<script src="../share_live_videojs/js/vue.min.js"></script>
 		<script>
 			var timer = null;
 			var app = new Vue({
