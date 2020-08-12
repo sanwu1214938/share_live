@@ -1,0 +1,69 @@
+{
+	"comm": {
+		"video": "視頻",
+		"comment": "評論",
+		"description": "簡介",
+		"ChooseSeries": "選集",
+		"Hottest": "最熱",
+		"Newest": "最新",
+		"Earliest": "最初",
+		"more": "全文",
+		"abstract": "摘要",
+		"PutItAway": "收起",
+		"SeriesDescription": "分集簡介",
+		"episode": "集",
+		"NoCommentYet": "還沒有評論，快來搶沙發吧",
+		"netError": "網絡超時，請稍後重試",
+		"retry": "點擊重試",
+		"coinTitle": "心幣",
+		"placeholderText": "聊點什麼?",
+		"hotNum": "熱度",
+		"openApp": "請在App打開!",
+		"openBrowser": "請在瀏覽器打開!",
+		"openTitle": "打開心娛APP",
+		"openDesc": "海量視頻等你來看",
+		"openXinyuApp": "打開APP"
+	},
+	"otherdiff": {
+		"SeeMore": "查看更多"
+	},
+	"report": {
+		"reportTitle": "舉報原因",
+		"feedbackTitle": "反饋類型",
+		"reportTitleDescription": "描述舉報（選填）",
+		"feedbackTitleDescription": "描述反饋",
+		"requiredFeedbackDescription": "反饋內容不能為空!",
+		"reportTitleContact": "聯繫方式（選填）",
+		"reportPlaceholder": "填寫舉報理由，可提升舉報成功率(300字以內)",
+		"ContactPlaceholder": "留下您的郵箱/手機號/QQ，方便聯繫！",
+		"submit": "提交",
+		"submitSuccessfully": "提交成功!",
+		"submitFailed": "提交失敗!",
+		"loadingText": "提交中",
+		"uploading": "上傳中...",
+		"done": "上傳成功",
+		"failed": "上傳失敗",
+		"pleaseChoose": "請選擇舉報原因!",
+		"feedbackPleaseChoose": "請選擇反饋類型!",
+		"liveReportList": ["違法違禁", "淫穢色情", "假冒及盜版", "虛假宣傳", "未成年人相關", "危險行為", "錄屏、盜播", "侮辱謾罵", "其他"],
+		"dramaReportList": ["廣告營銷", "色情低俗", "時政反動", "血腥暴力", "標題誇張", "欺詐或惡意營銷", "版權侵犯", "其他"],
+		"reportList": ["賬號問題", "功能問題", "支付問題", "投訴故障", "改善意見", "其他"]
+	},
+	"pcsite": {
+		"title": "亞視心娛",
+		"logoSrc": "img/icon_title_logo@2x.png",
+		"footerImgSrc": "img/img_advantage_zh_hk.png",
+		"mbFooterImgSrc": "img/img_advantage_zh_hk_mb.png",
+		"aboutUs": "關於我們",
+		"descTitle": "香港电视（ATV）旗下泛娱乐平台",
+		"descDetail": "ATV 亞洲電視成立於1957年，至今已有63年曆史，是香港第一間電視台，覆蓋了香港、澳門、廣東、以及北美將近一億觀眾，是亞洲地區具有影響力的電視台。    亞視自開台以來製作了許多家喻戶曉的經典電視劇和節目如首部原創武俠劇《天蠶變》、創下高收視的《我和春天有個約會》、《我和殭屍有個約會》以及董標主持的《賽馬節目》，歷年來捧紅過無數巨星，成就了許多輝煌的成績。隨著時代進步和互聯網普及，亞視看準數碼年代的大趨勢，以及娛樂商機帶來的發展潛力和經濟效益，因此跨足網絡電視，以OTT 服務形式，成立了亞洲心動娛樂APP，簡稱心娛(AMM) APP。心娛(AMM) APP 主要會跨足4個區域：香港、台灣、馬來西亞和新加坡，除了原有亞視經典作品和購入一些優秀的作品以外，本公司優秀的創作團隊也會陸陸續續製作更多各式各樣的原創作品，如: 電視劇、綜藝節目、音樂、新聞、電影、網絡資訊等資源，讓全球觀眾都能夠只通過心娛(AMM) APP 就能收看得到許多豐富又精彩的多媒體內容。在日新月異的未來，亞視將竭力發掘全球影視精英、創造更多獨樹一幟的作品，並且有信心心娛(AMM)APP將會在亞洲流媒體領域標新立異，帶動全球娛樂行業邁向更蓬勃的發展趨勢。",
+		"apkDownload": "APK 下载",
+		"androidDownload": "Android 下载",
+		"iosDownload": "IOS 下载"
+	},
+	"live": {
+		"confirm": "確認",
+		"cancel": "取消",
+		"lookInapp": "請打開APP觀看！"
+	}
+}

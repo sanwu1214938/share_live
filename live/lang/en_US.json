@@ -1,0 +1,69 @@
+{
+	"comm": {
+		"video": "Video",
+		"comment": "Comment",
+		"description": "Description",
+		"ChooseSeries": "Anthology",
+		"Hottest": "Hottest",
+		"Newest": "Latest",
+		"Earliest": "First",
+		"more": "More",
+		"abstract": "Summary",
+		"PutItAway": "Put It Away",
+		"SeriesDescription": "Series Description",
+		"episode": "episode",
+		"NoCommentYet": "No Comment Yet",
+		"netError": "Net Error, try again later",
+		"retry": "retry",
+		"coinTitle": "AMM coin",
+		"placeholderText": "Talk about something?",
+		"hotNum": "Hot",
+		"openApp": "Please open in App!",
+		"openBrowser": "Please open in browser!",
+		"openTitle": "Open AMM APP",
+		"openDesc": "Massive videos waiting for you to watch",
+		"openXinyuApp": "Open APP"
+	},
+	"otherdiff": {
+		"SeeMore": "See More"
+	},
+	"report": {
+		"reportTitle": "Report Reason",
+		"feedbackTitle": "Feedback type",
+		"reportTitleDescription": "Description report(optional)",
+		"feedbackTitleDescription": "Descriptive feedback",
+		"requiredFeedbackDescription": "Feedback content cannot be empty!",
+		"reportTitleContact": "Contact details(optional)",
+		"reportPlaceholder": "Fill in the reason for the report to increase the success rate of the report (within 300 words)",
+		"ContactPlaceholder": "Leave your email/mobile number/QQ for easy contact!",
+		"submit": "Submit",
+		"submitSuccessfully": "Submitted Successfully!",
+		"submitFailed": "Submission Failed!",
+		"loadingText": "Submitting",
+		"uploading": "Uploading...",
+		"done": "Uploaded Successfully",
+		"failed": "Upload Failed",
+		"pleaseChoose": "Please select a reason for reporting!",
+		"feedbackPleaseChoose": "Please select feedback type!",
+		"liveReportList": ["Illegal", "Obscene Porn", "Counterfeiting and piracy", "False Promotion", "Minor related", "Dangerous Behavior", "Screen recording, pirate broadcast", "Insult", "Other"],
+		"dramaReportList": ["Advertising marketing", "Vulgar", "Political reaction", "Bloody violence", "Exaggerated title", "Fraud or malicious marketing", "Copyright infringement", "Other"],
+		"reportList": ["Account issues", "Functional problem", "Payment issues", "Complaint of failure", "Suggestions for improvement", "Other"]
+	},
+	"pcsite": {
+		"title": "AMM",
+		"logoSrc": "img/icon_title_logo@2x.png",
+		"footerImgSrc": "img/img_advantage_en_us.png",
+		"mbFooterImgSrc": "img/img_advantage_en_us_mb.png",
+		"aboutUs": "ABOUT US",
+		"descTitle": "ATV's pan-entertainment platform",
+		"descDetail": "ATV (Asia Television) was formed in 1957, the first TV station in Hong Kong. ATV has covered nearly 100 million viewers in Hong Kong, Macau, Guangdong, and North America, it is an influential TV station in Asia.    ATV has created a lot of well-known classic Hong Kong drama and tv programme, such as the first Kung-fu drama “Reincarnated”. The high ratings drama “I Have a Date with Spring”, “My Date with a Vampire” and “Horse Racing Programme” which was hosted by Bill Tong Piu.    ATV now has entered into the Internet realm, in the form of OTT platform, establishing the new mobile app, Asia Momentum Media APP (AMM), with the growing trends in the digital age, the development potential, economic benefits and business opportunities brought by entertainment industry, we foresee that this will make a great impact in the industry.    AMM APP will span on 4 regions: Hong Kong, Taiwan, Malaysia and Singapore. In addition to the classic programmes of ATV, we will acquire great programmes and also creating original contents through our inhouse creative production team. Content such as: TV drama series, variety shows, music, news, movies, internet contents and others, so that global audiences can catch the rich and exciting programmes through our APP.    In the future, ATV will work in hand with the global elites and talents, create more original and unique programmes, and we are confident that AMM APP will set new ground in the Asian streaming media industry, driving the global entertainment industry to a more vigorous development trend.",
+		"apkDownload": "APK Download",
+		"androidDownload": "Android Download",
+		"iosDownload": "IOS Download"
+	},
+	"live": {
+		"confirm": "confirm",
+		"cancel": "cancel",
+		"lookInapp": "Please open the app to watch!"
+	}
+}
