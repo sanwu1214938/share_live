@@ -3,7 +3,8 @@ var ua = navigator.userAgent.toLowerCase();
 var langInfo = langInfo;
 var comm = {
 	// "apiBaseUrl": "/",
-	"apiBaseUrl": "https://www.amm.tv/",
+	// "apiBaseUrl": "https://www.amm.tv/",
+	"apiBaseUrl": "https://test.amm.tv/",
 	"appVersion": "1.0.0",
 	"languageType": "zh_HK",
 	"androidDownload": "https://play.google.com/store/apps/details?id=tv.amm.app",
