@@ -277,20 +277,13 @@ var app = new Vue({
 			});
 
 			// 同层播放设置
-			// $('video').attr('webkit-playsinline', 'webkit-playsinline');
-			// $('video').attr('x5-video-player-type', 'h5');
-			// $('video').attr('x5-video-player-fullscreen', 'true');
-			// $('video').attr('x-webkit-airplay', 'true');
-			// $('video').attr('playsinline', 'true');
-			// $('video').attr('webkit-playsinline', 'true');
-			// $('video').attr('controls', 'false');
-			// $("video")[0].style["object-fit"] = "fill";
-			$('video').attr('webkit-playsinline', 'true');
-			$('video').attr('playsinline', 'true');
+			$('video').attr('webkit-playsinline', 'webkit-playsinline');
 			$('video').attr('x5-video-player-type', 'h5');
-			$('video').attr('x5-video-orientation', 'portraint');
 			$('video').attr('x5-video-player-fullscreen', 'true');
 			$('video').attr('x-webkit-airplay', 'true');
+			$('video').attr('playsinline', 'true');
+			$('video').attr('webkit-playsinline', 'true');
+			// $("video")[0].style["object-fit"] = "fill";
 
 			window.onresize = function() {
 				$("video")[0].style.width = window.innerWidth + "px";
