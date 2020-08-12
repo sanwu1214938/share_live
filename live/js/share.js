@@ -236,18 +236,19 @@ var app = new Vue({
 		playVideo: function(videourl) {
 			var _this = this;
 			var player = new Aliplayer({
-				id: 'xinyu_video',
-				height: '100%',
-				width: '100%',
-				source: videourl,
-				autoplay: true,
-				isLive: true,
-				useH5Prism: true,
-				useFlashPrism: false,
-				playsinline: true,
-				x5_type: 'h5', //通过 video 属性 “x5-video-player-type” 声明启用同层H5播放器，支持的值：h5 https://x5.tencent.com/tbs/guide/video.html
-				x5_fullscreen: true, //通过 video 属性 “x5-video-player-fullscreen” 声明视频播放时是否进入到 TBS 的全屏模式，支持的值：true
-				cover: './img/bg_download@2x.png',
+				'id': 'xinyu_video',
+				'height': '100%',
+				'width': '100%',
+				'source': videourl,
+				'autoplay': true,
+				'isLive': true,
+				'useH5Prism': true,
+				'useFlashPrism': false,
+				'playsinline': true,
+				'x5_type': 'h5', //通过 video 属性 “x5-video-player-type” 声明启用同层H5播放器，支持的值：h5 https://x5.tencent.com/tbs/guide/video.html
+				'x5_fullscreen': true, //通过 video 属性 “x5-video-player-fullscreen” 声明视频播放时是否进入到 TBS 的全屏模式，支持的值：true
+				'x5_video_position': 'center',
+				'cover': './img/bg_download@2x.png',
 			}, function(player) {
 				console.log("The player is created");
 				$('#xinyu_video video').attr('poster', './img/bg_download@2x.png');
