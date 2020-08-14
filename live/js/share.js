@@ -6,6 +6,8 @@ var giftTimer = null;
 var smallGiftNum = {};
 // 定时器
 var maskTimer;
+// 阿里播放器实例
+var myPlayer;
 
 var app = new Vue({
 	el: '#app',
@@ -60,7 +62,7 @@ var app = new Vue({
 		var _this = this;
 
 		// 提示是否打开App
-		// this.mountedToapp();
+		this.mountedToapp();
 
 		// 聊天消息列表自动滚动到底部
 		this.chatListScroll();
@@ -235,7 +237,7 @@ var app = new Vue({
 		// 视频播放
 		playVideo: function(videourl) {
 			var _this = this;
-			var player = new Aliplayer({
+			myPlayer = new Aliplayer({
 				'id': 'xinyu_video',
 				'height': '100%',
 				'width': '100%',
@@ -251,7 +253,7 @@ var app = new Vue({
 				'cover': './img/bg_download@2x.png',
 			}, function(player) {
 				console.log("The player is created");
-				$('#xinyu_video video').attr('poster', './img/bg_download@2x.png');
+				// $('#xinyu_video video').attr('poster', './img/bg_download@2x.png');
 			});
 
 			// 同层播放设置
@@ -304,7 +306,8 @@ var app = new Vue({
 						_this.liveMaster = res.data;
 						_this.liveAudienceList = res.data.audienceList;
 						_this.liveTips = res.data.tips;
-						_this.liveCover = _this.imgBaseUrl + res.data.avatar;
+						_this.liveCover = _this.imgBaseUrl + res.data.liveCover;
+						// myPlayer.setCover(_this.liveCover);
 					} else {
 						console.log("请求主播信息出错");
 					}
